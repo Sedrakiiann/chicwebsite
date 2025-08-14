@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <title>Որակի կառավարման խորհրդատվություն | CHIC</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('backgrphoto.jpeg') no-repeat center center;
+      background-size: cover;
+      color: #003f5c;
+    }
+    header {
+      background-color: rgba(0, 84, 119, 0.95);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo-title {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+    .logo-title img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 12px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px;
+    }
+    nav a:hover {
+      background-color: rgba(255,255,255,0.15);
+      color: #ffcc00;
+    }
+    .contact-info-bar {
+      background-color: rgba(255,255,255,0.9);
+      color: #003f5c;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    .contact-info-bar a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    .section-content {
+      padding: 40px;
+      margin: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+    }
+    .sub-section {
+      display: none;
+      margin-top: 15px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+    }
+    .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+      justify-content: center;
+    }
+    .image-row img {
+      width: 220px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+      margin: 10px 0;
+    }
+    .dropdown-box {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 220px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      margin-top: 8px;
+      left: 0;
+    }
+    .dropdown-box a {
+      display: block;
+      padding: 10px 20px;
+      color: #003f5c;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .dropdown-box a:hover {
+      background-color: #f1f1f1;
+      color: #005477;
+    }
+    button {
+      background-color: #005477;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px 15px 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-title">
+      <img src="photologo.jpeg" alt="CHIC Logo">
+      <span> «Համատեղ առողջապահական նորարարությունների կենտրոն» ՀԿ</span>
+    </div>
+    <nav>
+      <a href="chicindex.html">Գլխավոր</a>
+      <a href="chicindex.html#courses">Դասընթացներ</a>
+      <a href="chicindex.html#team">Մեր թիմը</a>
+      <a href="chicindex.html#lecturers">Դասախոսներ</a>
+    </nav>
+  </header>
+
+  <div class="contact-info-bar">
+    Էլ․ փոստ՝ <a href="mailto:chic.ngo.arm@gmail.com">chic.ngo.arm@gmail.com</a>
+    Հեռ․: <a href="tel:+37444776701">(+374) 44 776701</a>
+    Հասցե՝ <a href="https://maps.google.com/?q=ՀՀ Արմավիրի մարզ, Մեծամոր ք. շ. 9/3 գ 9 բն" target="_blank">ՀՀ Արմավիրի մարզ, Մեծամոր ք. շ. 9/3 գ 9 բն</a>
+  </div>
+
+  <div class="section-content">
+    <h2>Որակի կառավարման համակարգի խորհրդատվություն</h2>
+    <br>
+
+    <button onclick="toggleSubSection('hospital')">Բուժհաստատություններ</button>
+    <div id="hospital" class="sub-section">
+      <p>Բուժհաստատությունների որակի կառավարման համակարգի խորհրդատվության մասին տեքստը այստեղ։</p>
+      <div class="image-row">
+        <img src="buj1.jpeg" alt="hospital 1">
+        <img src="buj2.jpeg" alt="hospital 2">
+        <img src="buj3.jpeg" alt="hospital 3">
+        <img src="buj4.jpeg" alt="hospital 4">
+      </div>
+    </div>
+
+    <button onclick="toggleSubSection('pharmacy')">Դեղատներ</button>
+    <div id="pharmacy" class="sub-section">
+      <p>Դեղատների որակի կառավարման համակարգի խորհրդատվության մասին տեքստը այստեղ։</p>
+      <div class="image-row">
+        <img src="dex1.jpeg" alt="pharmacy 1">
+        <img src="dex2.jpeg" alt="pharmacy 2">
+        <img src="dex3.jpeg" alt="pharmacy 3">
+        <img src="dex4.jpeg" alt="pharmacy 4">
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <button onclick="toggleDropdown('labDropdown')">Լաբորատորիաներ</button>
+      <div id="labDropdown" class="dropdown-box">
+        <a href="lab1.html">Լաբորատոր ծառայություն 1</a>
+        <a href="lab2.html">Հաջողության պատմություն</a>
+      </div>
+    </div>
+
+    <button onclick="toggleSubSection('dental')">Ստոմատոլոգիական կենտրոններ</button>
+    <div id="dental" class="sub-section">
+      <p>Ստոմատոլոգիական կենտրոնների որակի կառավարման համակարգի խորհրդատվության մասին տեքստը այստեղ։</p>
+      <div class="image-row">
+        <img src="stom1.jpeg" alt="dental 1">
+        <img src="stom2.jpeg" alt="dental 2">
+        <img src="stom3.jpeg" alt="dental 3">
+        <img src="stom4.jpeg" alt="dental 4">
+      </div>
+    </div>
+  </div>
+
+<div style="text-align: center; margin-top: 30px;">
+  <a href="chicindex.html#quality-consulting">
+    <button style="background-color: #005477; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 15px; cursor: pointer;">
+      Վերադառնալ
+    </button>
+  </a>
+</div> 
+
+  <script>
+    function toggleSubSection(id) {
+      const section = document.getElementById(id);
+      const isVisible = section.style.display === 'block';
+      document.querySelectorAll('.sub-section').forEach(div => div.style.display = 'none');
+      if (!isVisible) section.style.display = 'block';
+    }
+
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      document.querySelectorAll('.dropdown-box').forEach(el => {
+        if (el !== dropdown) el.style.display = 'none';
+      });
+      dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.dropdown-container')) {
+        document.querySelectorAll('.dropdown-box').forEach(el => el.style.display = 'none');
+      }
+    });
+  </script>
+</body>
+</html>

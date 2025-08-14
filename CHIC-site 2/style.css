@@ -1,0 +1,87 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* Մարմնի ձևավորում */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: url('backgrphoto.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
+  color: #003f5c;
+}
+
+/* Գլխագրի ոճ */
+header {
+  background-color: rgba(0, 84, 119, 0.95);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.logo-title img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+/* Բաժինների ձևավորում */
+.section-content {
+  flex: 1;
+  padding: 40px;
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+.section-content.active {
+  display: block;
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.image-row img {
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 30px;
+  text-decoration: none;
+  background-color: #005477;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.back-button:hover {
+  background-color: #003f5c;
+}

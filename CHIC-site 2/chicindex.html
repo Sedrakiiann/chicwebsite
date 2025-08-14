@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <title>CHIC</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: url('backgrphoto.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
+  color: #003f5c;
+}
+.container {
+  flex: 1;
+  padding: 40px;
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+   
+    header {
+      background-color: rgba(0, 84, 119, 0.95);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo-title {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+    .logo-title img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 12px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #005477;
+      min-width: 200px;
+      border-radius: 5px;
+      z-index: 1001;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    nav a, .dropdown-content a {
+      text-decoration: none;
+      color: white;
+      padding: 10px;
+      display: block;
+    }
+    nav a:hover, .dropdown-content a:hover {
+      background-color: rgba(255,255,255,0.15);
+      color: #ffcc00;
+    }
+    .contact-info-bar {
+      background-color: rgba(255,255,255,0.9);
+      color: #003f5c;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    .contact-info-bar a {
+      color: #516f95;
+      text-decoration: none;
+    }
+    .intro-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px 20px;
+    }
+    .welcome-text {
+      background-color: rgba(0, 84, 119, 0.75);
+      color: white;
+      padding: 20px 40px;
+      border-radius: 10px;
+      font-size: 22px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .feedback-form {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+    }
+    .section-content {
+      display: none;
+      padding: 40px;
+      margin: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+    }
+    .section-content.active {
+      display: block;
+    }
+    .gallery {
+      display: none;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+    .gallery img {
+      width: 250px;
+      border-radius: 10px;
+    }
+    .history-section {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    .history-section img {
+      width: 250px;
+      border-radius: 10px;
+    }
+    .text {
+      max-width: 600px;
+    }
+    button {
+      background-color: #005477;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+    #homeButton {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+#homeButton:hover {
+  background-color: #ffcc00;
+  color: #003f5c;
+}
+.sub-section {
+  display: none;
+  margin-top: 15px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.image-row img {
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}.dropdown-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 15px; /* Եթե մի քանի dropdown կա՝ մի քիչ հեռու պահի */
+}
+
+.dropdown-box {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 220px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  margin-top: 8px;
+  left: 0; /* որպեսզի հենց կոճակի տակ բացվի */
+}
+
+.dropdown-box a {
+  display: block;
+  padding: 10px 20px;
+  color: #003f5c;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.dropdown-box a:hover {
+  background-color: #f1f1f1;
+  color: #005477;
+}
+.text-box {
+  padding: 15px 20px;
+  background-color: rgba(255, 255, 255, 0.8); 
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-title">
+      <img src="photologo.jpeg" alt="CHIC Logo">
+      <span> «Համատեղ առողջապահական նորարարությունների կենտրոն» ՀԿ</span>
+    </div>
+    <nav>
+      <div class="dropdown">
+        <a href="#">Մեր մասին</a>
+        <div class="dropdown-content">
+          <a href="#" onclick="showSection('team')">Մեր թիմ</a>
+          <a href="#" onclick="showSection('lecturers')">Մեր դասախոսները</a>
+          <a href="#" onclick="showSection('history')">Պատմություն</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Գործունեություն</a>
+        <div class="dropdown-content">
+          <a href="#" onclick="showSection('courses')">Դասընթացներ</a>
+          <a href="#" onclick="showSection('quality-consulting')">Որակի կառավարման համակարգի խորհրդատվություն</a>
+          <a href="#" onclick="showSection('licensing-consulting')">Լիցենզավորման խորհրդատվություն</a>
+          <a href="#">Ծրագրեր</a>
+        </div>
+      </div>
+      <div class="dropdown">
+  <a href="#">Կամավորություն</a>
+  <div class="dropdown-content">
+    <a href="#" onclick="showSection('volunteer')">Դառնալ կամավոր</a>
+  </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Հայտարարություններ</a>
+        <div class="dropdown-content">
+          <a href="#">Թափուր հաստիք</a>
+        </div>
+      </div>
+      <a href="#" id="homeButton" style="display:none;" onclick="goHome()">Գլխավոր էջ</a>
+    </nav>
+  </header>
+  <div class="contact-info-bar">
+  Էլ․ փոստ՝ <a href="mailto:chic.ngo.arm@gmail.com">chic.ngo.arm@gmail.com</a>
+  Հեռ․: <a href="tel:+37444776701">(+374) 44 776701</a>
+ </div>
+
+<div class="intro-screen" id="introScreen">
+  <div class="welcome-text" style="font-size: 26px; font-weight: bold;">
+    Բարի գալուստ «Համատեղ առողջապահական նորարարությունների կենտրոն» հասարակական կազմակերպություն
+  </div>
+
+  <div class="feedback-form" style="background-color: rgba(0, 84, 119, 0.9); padding: 20px; border-radius: 10px; color: white; position: relative; max-width: 400px; margin-top: 20px;">
+    <h3 style="margin-bottom: 10px;">Շնորհակալ ենք այցի համար 🫶</h3>
+    <p style="font-size: 15px; line-height: 1.6;">
+      Քո այցելությունը կարևոր է մեզ համար։  
+      Մենք հավատում ենք համագործակցության, վստահության ու հոգատարության վրա կառուցված առողջապահական միջավայրին։
+    </p>
+  </div>
+
+  <!-- Սոց․ ցանցերի պատկերակները՝ աջ ներքևում -->
+  <div style="position: fixed; right: 20px; bottom: 20px; display: flex; gap: 10px; z-index: 1000;">
+    <a href="https://www.instagram.com/chic.armenia?igsh=MTNicmFyaXpyZWJtaA==" target="_blank">
+      <img src="ig.jpeg" alt="Instagram" width="36" style="border-radius: 8px;">
+    </a>
+    <a href="https://www.facebook.com/share/1ELBFjvsKT/?mibextid=wwXIfr" target="_blank">
+      <img src="fb.jpeg" alt="Facebook" width="36" style="border-radius: 8px;">
+    </a>
+  </div>
+</div>
+  <div class="section-content" id="history">
+    <h2>Պատմություն</h2>
+    <div class="history-section">
+      <div>
+        <img src="roz.jpeg" alt="Ռոզա Մարգարյան">
+        <p style="text-align:center; margin-top:5px;"><strong>Հիմնադիր նախագահ - Ռոզա Մարգարյան</strong></p>
+      </div>
+      <div class="text">
+        <p><strong>Մեր առաքելությունը՝</strong> առողջապահական համակարգի որակի բարելավմանը և հանրային առողջության պահպանմանը նպաստելն է։</p>
+        <p><strong>🎯 Մեր տեսլականը</strong><br> շահառուների կարիքների բավարարման միջոցով՝ կայուն հաջողության հասնելը և առողջապահության ոլորտում վստահելի գործընկեր դառնալն է։</p>
+        <p><strong>🎯 Մեր արժեքներն են.</strong></p>
+        <ul>
+          <li>🔹 Արհեստավարժությունը</li>
+          <li>🔹 Պատասխանատվությունը</li>
+          <li>🔹 Ազնվությունն ու թափանցիկությունը</li>
+          <li>🔹 Թիմային աշխատանքը</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<div class="section-content" id="team">
+  <h2>Մեր թիմը</h2>
+  <ul>
+    <li>Ռոզա Մարգարյան – Հիմնադիր նախագահ</li>
+    <li>Կատյա Հարությունյան – Ծրագրերի ղեկավար</li>
+    <li>Ռուզաննա Մովսիսյան – Իրավաբան</li>
+    <li>Գայանե Սահակյան – ՈԿՀ փորձագետ</li>
+    <li>Էմմա Մելքոնյան – Ծրագրերի համակարգող</li>
+    <li>Ստելլա Խաչատրյան –  Գրաֆիկ դիզայներ</li>
+    <li>Գոհար Գրիգորյան – Մարկետինգի պատասխանատու</li>
+    <li>Հասմիկ Մուրադյան – Կրթական ծրագրերի համակարգող</li>
+  </ul>
+</div>
+
+<div class="section-content" id="lecturers">
+  <h2>Մեր դասախոսները</h2>
+ 
+   <ul>
+       <li><strong>Սամվել Հայրումյան</strong> - Սրտաբան, ՀՀ ԱՆ ընտանեկան բժշկության գծով խորհրդատու</li>
+        <li><strong>Հասմիկ Սաիյան</strong> - Սրտաբան, «Էրեբունի» ԲԿ թերապիայի փոխտնօրեն, բ.գ.թ.</li>
+        <li><strong>Անի Բաբելյան</strong> - Մանկաբարձ-գինեկոլոգ, «Շենգավիթ» ԲԿ ԿԿ ծառայության ղեկավար</li>
+        <li><strong>Արթուր Մարտիրոսյան</strong> - Երևանի հենակետային բժշկական քոլեջի դասախոս, ,,Վերակենդանացման, ինտենսիվ թերապիայի, աղետների բժշկության,, ամբիոնի վարիչ, մանկաբույժ</li>
+        <li><strong>Կարինե Ենգիբարյան</strong> - Մանկաբույժ, ալերգոլոգ-իմունոլոգ, դոցենտ</li>
+        <li><strong>Հայկ Հարությունյան</strong> - բժիշկ ինֆեկցիոնիստ, «Հիվանդությունների վերահսկման և կանխարգելման ազգային կենտրոն»</li>
+        <li><strong>Մելինե Նավասարդյան</strong> - Բժիշկ-ճառագայթաբան, բուժական գծով տնօրեն «Royal Clinic» LLC</li>
+        <li><strong>Զինա Լսկավյան</strong> - գլխավոր բուժքույր , «Սուրբ Գրիգոր Լուսավորիչ» բժշկական կենտրոն</li>
+        <li><strong>Մերդա Ղազարյան</strong> - Մանկաբարձ-գինեկոլոգ</li>
+        <li><strong>Արմինե Չոփիկյան</strong> - ԵՊԲՀ դասախոս հանրային առողջության և առողջապահության ամբիոն, բ․գ․թ</li>
+        <li><strong>Հայկ Բաղդյան</strong> - Կլինիկական հոգեբան</li>
+        <li><strong>Արմինե Բայբուրթյան</strong> - բժիշկ համաճարակաբան, հանրային առողջության մագիստրոս, առողջապահության կազմակերպիչ</li>
+        <li><strong>Ռուզաննա Մովսիսյան</strong> - իրավաբան, ԵՊԲՀ դասախոս</li>
+        <li><strong>Էմմա Մելքոնյան</strong> - Դեղագետ, ՀՀ ԱՆ լիցենզավորման գործակալության դեղագետ</li>
+       
+      </ul>
+</div>
+
+<div class="section-content" id="courses">
+  <h2>Դասընթացներ</h2>
+  <br>
+  <button onclick="toggleGallery('senior')">Ավագ բուժաշխատողներ</button>
+  <button onclick="toggleGallery('mid')">Միջին բուժաշխատողներ</button>
+
+  <div id="senior" class="gallery">
+    <img src="photo1.jpeg" alt="Senior 1">
+    <img src="photo2.jpeg" alt="Senior 2">
+    <img src="photo3.jpeg" alt="Senior 3">
+    <img src="photo4.jpeg" alt="Senior 4">
+    <img src="photo5.jpeg" alt="Senior 5">
+    <img src="photo6.jpeg" alt="Senior 6">
+    <img src="photo7.jpeg" alt="Senior 7">
+    <img src="photo8.jpeg" alt="Senior 8">
+    <img src="photo9.jpeg" alt="Senior 9">
+    <img src="photo10.jpeg" alt="Senior 10">
+    <img src="photo11.jpeg" alt="Senior 11">
+  </div>
+
+  <div id="mid" class="gallery">
+    <img src="mid1.jpeg" alt="Mid 1">
+    <img src="mid2.jpeg" alt="Mid 2">
+    <img src="mid3.jpeg" alt="Mid 3">
+    <img src="mid4.jpeg" alt="Mid 4">
+    <img src="mid5.jpeg" alt="Mid 5">
+    <img src="mid6.jpeg" alt="Mid 6">
+    <img src="mid7.jpeg" alt="Mid 7">
+  </div>
+</div>
+
+<div class="section-content" id="quality-consulting">
+  <h2>Որակի կառավարման համակարգի խորհրդատվություն</h2>
+  <br>
+
+  <button onclick="toggleSubSection('hospital')">Բուժհաստատություններ</button>
+  <div id="hospital" class="sub-section">
+    <p>Բուժհաստատությունների որակի կառավարման համակարգի խորհրդատվության մասին տեքստը այստեղ։</p>
+    <div class="image-row">
+      <img src="buj1.jpeg" alt="hospital 1">
+      <img src="buj2.jpeg" alt="hospital 2">
+      <img src="buj3.jpeg" alt="hospital 3">
+      <img src="buj4.jpeg" alt="hospital 4">
+    </div>
+  </div>
+
+
+ 
+  <button onclick="toggleSubSection('pharmacy')">Դեղատներ</button>
+  <div id="pharmacy" class="sub-section">
+    <p>Դեղատների որակի կառավարման համակարգի խորհրդատվության մասին տեքստը այստեղ։</p>
+    <div class="image-row">
+      <img src="dex1.jpeg" alt="pharmacy 1">
+      <img src="dex2.jpeg" alt="pharmacy 2">
+      <img src="dex3.jpeg" alt="pharmacy 3">
+      <img src="dex4.jpeg" alt="pharmacy 4">
+    </div>
+  </div>
+<div class="dropdown-container">
+  <button onclick="toggleDropdown('labDropdown')">Լաբորատորիաներ</button>
+  <div id="labDropdown" class="dropdown-box">
+<a href="lab1.html">Լաբորատոր ծառայություն 1</a>
+<a href="lab2.html">Հաջողության պատմություն</a>
+  </div>
+</div>
+
+
+  <button onclick="toggleSubSection('dental')">Ստոմատոլոգիական կենտրոններ</button>
+  <div id="dental" class="sub-section">
+    <p>Ստոմատոլոգիական կենտրոնների որակի կառավարման համակարգի խորհրդատվության մասին տեքստը այստեղ։</p>
+    <div class="image-row">
+      <img src="stom1.jpeg" alt="dental 1">
+      <img src="stom2.jpeg" alt="dental 2">
+      <img src="stom3.jpeg" alt="dental 3">
+      <img src="stom4.jpeg" alt="dental 4">
+    </div>
+  </div>
+</div>
+<div class="section-content" id="volunteer">
+  <h2>Դառնալ կամավոր</h2>
+  <form id="volunteerForm">
+    <label>Անուն:<br><input type="text" name="name" required></label><br>
+    <label>Ազգանուն:<br><input type="text" name="surname" required></label><br>
+    <label>Հայրանուն:<br><input type="text" name="fathername" required></label><br>
+    <label>Ծննդյան ամսաթիվ:<br><input type="date" name="birthdate" required></label><br>
+    <label>Ուսումնական հաստատություն:<br><input type="text" name="university" required></label><br>
+    <label>Հեռախոս:<br><input type="tel" name="phone" required></label><br><br>
+    <button type="submit">Ուղարկել</button>
+  </form>
+  <p id="responseMessage" style="margin-top: 10px;"></p>
+</div>
+<script>
+  function showSection(id) {
+    document.getElementById('introScreen').style.display = 'none';
+    document.querySelectorAll('.section-content').forEach(div => {
+      div.classList.toggle('active', div.id === id);
+    });
+    const homeBtn = document.getElementById('homeButton');
+    if (homeBtn) homeBtn.style.display = 'inline-block';
+  }
+
+  function goHome() {
+    document.getElementById('introScreen').style.display = 'flex';
+    document.querySelectorAll('.section-content').forEach(div => {
+      div.classList.remove('active');
+    });
+    const homeBtn = document.getElementById('homeButton');
+    if (homeBtn) homeBtn.style.display = 'none';
+  }
+
+  function toggleGallery(id) {
+    const gallery = document.getElementById(id);
+    const isVisible = gallery.style.display === 'flex';
+    document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+    if (!isVisible) {
+      gallery.style.display = 'flex';
+    } else {
+      gallery.style.display = 'none';
+    }
+  }
+
+  function addFeedback(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const comment = document.getElementById('comment').value.trim();
+    if (!name || !comment) return;
+
+    const div = document.createElement('div');
+    div.innerHTML = `<strong>${name}</strong><p>${comment}</p>`;
+    document.getElementById('feedbackForm').appendChild(div);
+    event.target.reset();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const volunteerForm = document.getElementById('volunteerForm');
+    if (volunteerForm) {
+      volunteerForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        fetch('https://script.google.com/macros/s/AKfycbx89r4iWAdh5Mjch-YwwQ1jGX9Dp85qWI5RWzKvwUg/exec', {
+          method: 'POST',
+          body: data
+        })
+          .then(res => res.text())
+          .then(msg => {
+            document.getElementById('responseMessage').innerText = '✅ Հաջողությամբ ուղարկվեց։';
+            e.target.reset();
+          })
+          .catch(err => {
+            document.getElementById('responseMessage').innerText = '❌ Սխալ տեղի ունեցավ։';
+          });
+      });
+    }
+  });
+  
+  function toggleSubSection(id) {
+    const section = document.getElementById(id);
+    const isVisible = section.style.display === 'block';
+    document.querySelectorAll('.sub-section').forEach(div => div.style.display = 'none');
+    if (!isVisible) section.style.display = 'block';
+  }
+ 
+ 
+  function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    // Փակենք բոլոր բացվածները
+    document.querySelectorAll('.dropdown-box').forEach(el => {
+      if (el !== dropdown) el.style.display = 'none';
+    });
+
+    dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+  }
+
+  // Փակել բոլոր dropdown-ները երբ սեղմում ենք դուրս
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.dropdown-container')) {
+      document.querySelectorAll('.dropdown-box').forEach(el => el.style.display = 'none');
+    }
+  });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const hash = window.location.hash.substring(1); // օրինակ "quality-consulting"
+  if (hash) {
+    document.getElementById('introScreen').style.display = 'none';
+    document.querySelectorAll('.section-content').forEach(el => {
+      el.classList.remove('active');
+    });
+    const target = document.getElementById(hash);
+    if (target) {
+      target.classList.add('active');
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+    document.getElementById('homeButton').style.display = 'inline-block';
+  }
+});
+
+ 
+  
+</script>
+</body>
+</html>
